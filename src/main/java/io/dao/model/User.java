@@ -1,11 +1,8 @@
 package io.dao.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.util.UUID;
 
 public class User {
-    @JsonDeserialize
     private UUID id;
     private String name;
     private int age;
@@ -66,6 +63,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

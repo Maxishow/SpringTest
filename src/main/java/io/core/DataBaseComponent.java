@@ -1,8 +1,8 @@
 package io.core;
 
 import io.dao.model.User;
+import io.exceptions.UserNotFoundException;
 import io.rest.dto.UserDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -32,11 +32,11 @@ public class DataBaseComponent {
     }
 
     public User findById(UUID id) {
-        if(users.get(id) == null) {
-            System.out.println("User has been not found");
-            return null;
-        }
-        return users.get(id);
+
+            if (users.get(id) == null) {
+                throw new UserNotFoundException("User by id  has been not found");
+            }
+            return users.get(id);
     }
 
     public Collection<User> findAllUsers() {

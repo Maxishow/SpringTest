@@ -2,9 +2,10 @@ package io.rest.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import java.util.UUID;
+import java.io.Serializable;
 
-public class UserDto {
+
+public class UserDto implements Serializable {
     private String name;
     private int age;
     private String password;
@@ -42,3 +43,4 @@ public class UserDto {
         this.email = email;
     }
 }
+

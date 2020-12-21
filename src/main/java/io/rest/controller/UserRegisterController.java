@@ -31,14 +31,14 @@ public class UserRegisterController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("/find-by-id")
-    public User findUserById(@RequestBody UUID id) {
+    @GetMapping("/find-by-id/{id}")
+    public User findUserById(@PathVariable("id") UUID id) {
         return userService.findUserById(id);
 
     }
 
-    @PostMapping("/find-by-email")
-    public User findByEmail(@RequestBody String email ) {
+    @GetMapping("/find-by-email/{email}")
+    public User findByEmail(@PathVariable("email") String email ) {
         return userService.findUserByEmail(email);
     }
 
@@ -50,5 +50,6 @@ public class UserRegisterController {
      * Переписать валидацию, на исключения
      * Правильные ответы
      */
+
 
 }

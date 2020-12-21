@@ -1,12 +1,15 @@
 package io.service;
 
 import io.dao.UserRepository;
+import io.exceptions.EmailAlreadyExistException;
+import io.exceptions.EmailNotValidException;
+import io.exceptions.NoEmailMatchesException;
+import io.exceptions.PasswordValidException;
 import io.rest.dto.UserDto;
 import io.dao.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -27,13 +30,13 @@ public class UserService {
             return userRepository.createUser(userDto);
         }
         else if (!validate(userDto.getEmail())) {
-            System.out.println("Email is not valid");
+          throw new EmailNotValidException("Email is not valid");
         }
         else if (checkDuplicateEmail(userDto)) {
-            System.out.println("This email is already exist");
+            throw new EmailAlreadyExistException("This email is already exist");
         }
         else if (!(userDto.getPassword().length() >= 6)){
-            System.out.println("Password should be have at least 6 symbols");
+            throw new PasswordValidException("Password should be have at least 6 symbols");
         }
         return null;
     }
@@ -43,18 +46,25 @@ public class UserService {
     }
 
     public User findUserByEmail(String email) {
-        for(Map.Entry<UUID,User> uuidUserEntry: userRepository.getUsers().entrySet()){
-            if(uuidUserEntry.getValue().getEmail().equals(email)){
-                return uuidUserEntry.getValue();
+        for(Map.Entry<UUID, User> LongUserEntry: userRepository.getUsers().entrySet()){
+            if(LongUserEntry.getValue().getEmail().equals(email)){
+                return LongUserEntry.getValue();
             }
         }
-        System.out.println("No matches found");
-        return null;
+        throw new NoEmailMatchesException("No email matches found");
     }
 
-    public User findUserById(UUID id) {
+    public User findByEmail2(String email) {
+       Map<UUID, User> map = userRepository.getUsers();
+       return map.values().stream()
+               .filter(x -> email.equals(x.getEmail()))
+               .findAny().orElse(null);
+    }
+
+        public User findUserById (UUID id) {
         return userRepository.findUserById(id);
     }
+
 
     private boolean validate(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);

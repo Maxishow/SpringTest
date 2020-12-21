@@ -27,7 +27,7 @@ public class UserRepository {
         return dataBaseComponent.findAllUsers();
     }
 
-    public Map<UUID,User> getUsers() {
+    public Map<UUID, User> getUsers() {
         return dataBaseComponent.getUsers();
     }
 
