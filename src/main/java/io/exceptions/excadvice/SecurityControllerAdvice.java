@@ -1,4 +1,4 @@
-package io.exceptions.exceptionsAdvice;
+package io.exceptions.excadvice;
 
 import io.exceptions.*;
 import org.springframework.http.HttpStatus;

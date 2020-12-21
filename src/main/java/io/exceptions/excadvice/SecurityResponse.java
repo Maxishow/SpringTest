@@ -1,4 +1,4 @@
-package io.exceptions.exceptionsAdvice;
+package io.exceptions.excadvice;
 
 public class SecurityResponse {
     private String error;
