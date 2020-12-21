@@ -12,42 +12,42 @@ public class SecurityControllerAdvice {
     @ExceptionHandler(EmailAlreadyExistException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public SecurityResponse handleSecurityException(EmailAlreadyExistException se) {
-        return new SecurityResponse(se.getMessage());
+    public SecurityResponse handleSecurityException(EmailAlreadyExistException exc) {
+        return new SecurityResponse(exc.getMessage());
     }
     @ExceptionHandler(EmailNotValidException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public SecurityResponse handleSecurityException(EmailNotValidException se) {
-        return new SecurityResponse(se.getMessage());
+    public SecurityResponse handleSecurityException(EmailNotValidException exc) {
+        return new SecurityResponse(exc.getMessage());
     }
 
     @ExceptionHandler(PasswordValidException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public SecurityResponse handleSecurityException(PasswordValidException se) {
-        return new SecurityResponse(se.getMessage());
+    public SecurityResponse handleSecurityException(PasswordValidException exc) {
+        return new SecurityResponse(exc.getMessage());
     }
 
     @ExceptionHandler(NoEmailMatchesException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public SecurityResponse handleSecurityException(NoEmailMatchesException se) {
-        return new SecurityResponse(se.getMessage());
+    public SecurityResponse handleSecurityException(NoEmailMatchesException exc) {
+        return new SecurityResponse(exc.getMessage());
     }
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public SecurityResponse handleSecurityException(UserNotFoundException se) {
-        return new SecurityResponse(se.getMessage());
+    public SecurityResponse handleSecurityException(UserNotFoundException exc) {
+        return new SecurityResponse(exc.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public SecurityResponse handleSecurityException(IllegalArgumentException se) {
-        return new SecurityResponse(se.getMessage());
+    public SecurityResponse handleSecurityException(IllegalArgumentException exc) {
+        return new SecurityResponse(exc.getMessage());
     }
 
 }
