@@ -42,14 +42,9 @@ public class UserRegisterController {
         return userService.findUserByEmail(email);
     }
 
-    /**
-     * Написать контроллер поиск юзера по айдишнику
-     * Нельзя создавать юзера с одинаковым емеилом
-     * Написать контроллер поиск юзера по емеилу
-     * Добавить валидация пароля как минимум 6 символов
-     * Переписать валидацию, на исключения
-     * Правильные ответы
-     */
-
+    @PutMapping("/update/{id}")
+    public User update(@PathVariable UUID id, @RequestBody UserDto userDto) {
+        return userService.update(userDto,id);
+    }
 
 }

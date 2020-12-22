@@ -65,6 +65,17 @@ public class UserService {
         return userRepository.findUserById(id);
     }
 
+    public User update(UserDto userDto, UUID id) {
+        if (!validate(userDto.getEmail())) {
+            throw new EmailNotValidException("Email is not valid");
+        } else if (checkDuplicateEmailButNotCurrent(userDto, id)) {
+            throw new EmailAlreadyExistException("This email is already exist");
+        } else if (!(userDto.getPassword().length() >= 6)) {
+            throw new PasswordValidException("Password should be have at least 6 symbols");
+        }
+        return userRepository.update(userDto,id);
+    }
+
 
     private boolean validate(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
@@ -76,6 +87,13 @@ public class UserService {
             if (user.getEmail().equals(userDto.getEmail())) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    private boolean checkDuplicateEmailButNotCurrent(UserDto userDto, UUID id) {
+        if(!userRepository.getUsers().get(id).getEmail().equals(userDto.getEmail())) {
+           return checkDuplicateEmail(userDto);
         }
         return false;
     }

@@ -19,6 +19,10 @@ public class UserRepository {
         return dataBaseComponent.createUser(userDto);
     }
 
+    public User update(UserDto userDto, UUID id) {
+        return dataBaseComponent.update(userDto, id);
+    }
+
     public User findUserById(UUID id) {
         return dataBaseComponent.findById(id);
     }
