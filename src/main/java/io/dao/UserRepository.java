@@ -31,6 +31,10 @@ public class UserRepository {
         return dataBaseComponent.findAllUsers();
     }
 
+    public Collection<User> findAllUsersList() {
+        return dataBaseComponent.findAllUsersList();
+    }
+
     public Map<UUID, User> getUsers() {
         return dataBaseComponent.getUsers();
     }

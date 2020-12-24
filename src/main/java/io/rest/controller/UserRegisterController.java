@@ -26,7 +26,7 @@ public class UserRegisterController {
 
     @PostMapping("/find-all")
     public List<String> findAllUsers() {
-        return userService.findAllUsers().stream()
+        return userService.findAllUsersList().stream()
                 .map(User::toString)
                 .collect(Collectors.toList());
     }

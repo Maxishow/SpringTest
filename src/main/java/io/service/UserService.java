@@ -41,6 +41,9 @@ public class UserService {
     public Collection<User> findAllUsers() {
         return userRepository.findAllUsers();
     }
+    public Collection<User> findAllUsersList() {
+        return userRepository.findAllUsersList();
+    }
 
     public User findUserByEmail(String email) {
         for(Map.Entry<UUID, User> LongUserEntry: userRepository.getUsers().entrySet()){

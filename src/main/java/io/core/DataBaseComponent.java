@@ -1,6 +1,7 @@
 package io.core;
 
 import io.dao.model.User;
+import io.exceptions.EmailAlreadyExistException;
 import io.exceptions.UserNotFoundException;
 import io.rest.dto.UserDto;
 import org.springframework.stereotype.Component;
@@ -43,24 +44,32 @@ public class DataBaseComponent {
         return users.values();
     }
 
+    public Collection<User> findAllUsersList() {
+        if(users.isEmpty()) {
+            throw new UserNotFoundException("No one user has been  found");
+        }
+        return users.values();
+    }
+
+
     public  User update(UserDto userDto, UUID id) {
         if (!checkEmptyName(userDto)) {
-            getUsers().get(id).setName(userDto.getName());
+            users.get(id).setName(userDto.getName());
         }
         if (!checkEmptyEmail(userDto)) {
-            getUsers().get(id).setEmail(userDto.getEmail());
+            users.get(id).setEmail(userDto.getEmail());
         }
         if (!checkEmptyAge(userDto)) {
-            getUsers().get(id).setAge(userDto.getAge());
+            users.get(id).setAge(userDto.getAge());
         }
         if (!checkEmptyPassword(userDto)) {
-            getUsers().get(id).setPassword(userDto.getPassword());
+            users.get(id).setPassword(userDto.getPassword());
         }
         return getUsers().get(id);
     }
 
     public User delete(UUID id) {
-        return getUsers().remove(id);
+        return users.remove(id);
     }
 
     private boolean checkEmptyPassword(UserDto userDto) {
