@@ -47,4 +47,9 @@ public class UserRegisterController {
         return userService.update(userDto,id);
     }
 
+    @GetMapping("/delete/{id}")
+    public User delete(@PathVariable("id") UUID id) {
+       return userService.delete(id);
+    }
+
 }

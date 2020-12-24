@@ -44,19 +44,23 @@ public class DataBaseComponent {
     }
 
     public  User update(UserDto userDto, UUID id) {
-        if(!checkEmptyName(userDto)) {
+        if (!checkEmptyName(userDto)) {
             getUsers().get(id).setName(userDto.getName());
         }
-        if(!checkEmptyEmail(userDto)) {
-           getUsers().get(id).setEmail(userDto.getEmail());
+        if (!checkEmptyEmail(userDto)) {
+            getUsers().get(id).setEmail(userDto.getEmail());
         }
-        if(!checkEmptyAge(userDto)) {
+        if (!checkEmptyAge(userDto)) {
             getUsers().get(id).setAge(userDto.getAge());
         }
-        if(!checkEmptyPassword(userDto)) {
+        if (!checkEmptyPassword(userDto)) {
             getUsers().get(id).setPassword(userDto.getPassword());
         }
         return getUsers().get(id);
+    }
+
+    public User delete(UUID id) {
+        return getUsers().remove(id);
     }
 
     private boolean checkEmptyPassword(UserDto userDto) {

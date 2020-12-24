@@ -35,4 +35,8 @@ public class UserRepository {
         return dataBaseComponent.getUsers();
     }
 
+    public User delete(UUID id) {
+        return dataBaseComponent.delete(id);
+    }
+
 }

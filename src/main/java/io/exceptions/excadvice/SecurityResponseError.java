@@ -1,15 +1,17 @@
 package io.exceptions.excadvice;
 
-public class SecurityResponse {
+public class SecurityResponseError {
     private String error;
 
-    public SecurityResponse() {
+    public SecurityResponseError() {
 
     }
 
-    public SecurityResponse(String error) {
+    public SecurityResponseError(String error) {
         this.error = error;
     }
+
+
 
     public String getError() {
         return error;
