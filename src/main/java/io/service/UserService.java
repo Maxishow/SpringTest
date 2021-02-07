@@ -1,5 +1,6 @@
 package io.service;
 
+import io.core.DataBaseComponent;
 import io.dao.UserRepository;
 import io.exceptions.*;
 import io.rest.dto.UserDto;
@@ -80,8 +81,8 @@ public class UserService {
         if (userRepository.getUsers().get(id) == null) {
             throw new UserNotFoundException("User by id  has been not found");
         }
-        userRepository.delete(id);
-        throw new DeleteUser("User has been successfully delete");
+//        userRepository.delete(id);
+        throw new DeleteUser("User "+ userRepository.delete(id).getEmail() + " has been successfully delete");
     }
 
 
@@ -96,6 +97,7 @@ public class UserService {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -108,5 +110,4 @@ public class UserService {
         }
         return false;
     }
-
 }
